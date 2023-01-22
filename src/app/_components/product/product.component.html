@@ -1,0 +1,16 @@
+<div class="max-w-[1240px] mx-auto px-2">
+  <div class="flex w-full flex-row gap-20">
+    <div class="flex flex-col gap-4 relative">
+      <img id="product" src="https://picsum.photos/300/200" class="rounded h-[350px] w-full" />
+      <div class="flex flex-row gap-2 justify-between">
+        <button class="p-3 rounded-sm bg-[#ff9f00] w-[50%] text-white font-bold uppercase" (click)="addToCart()">Add to cart</button>
+        <button class="p-3 rounded-sm bg-[#fb641b] w-[50%] text-white font-bold uppercase">Buy Now</button>
+      </div>
+    </div>
+    <div class="flex flex-col gap-5">
+      <h1 class="text-2xl">{{ product?.name }}</h1>
+      <div class="rounded-2xl bg-[#26a541] text-center text-white w-min px-3 py-1">{{ product?.rating }}</div>
+      <h2 class="font-bold text-xl">&#36; {{ product?.price }}</h2>
+    </div>
+  </div>
+</div>

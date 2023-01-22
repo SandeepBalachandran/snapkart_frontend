@@ -1,0 +1,58 @@
+<div class="max-w-[1240px] mx-auto px-2">
+  <div class="flex flex-row justify-between w-full gap-3">
+    <div class="flex flex-col justify-between gap-2 grow-[1]">
+      <div class="flex flex-row gap-4 p-4 bg-white rounded-sm" *ngFor="let product of cartItems; trackBy: trackByItems">
+        <div class="flex flex-col gap-3">
+          <div class="flex content-center">
+            <img src="https://picsum.photos/300/200" class="rounded" width="200" />
+          </div>
+          <div class="flex flex-row gap-2">
+            <div class="px-3 py-1 border-2 rounded-full border-slate-300 hover:cursor-pointer" (click)="decreaseItemCount()">-</div>
+            <input type="number" class="w-16 p-1 border-2 border-slate-300" max="5" />
+            <div class="px-3 py-1 border-2 rounded-full border-slate-300 hover:cursor-pointer" (click)="increaseItemCount()">+</div>
+          </div>
+        </div>
+        <div class="flex flex-col w-full gap-4 my-4">
+          <div>
+            <h1 class="text-lg">{{ product.name }}</h1>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="rounded-lg bg-[#26a541] text-center text-white w-min px-3 py-1">
+              {{ product.rating }}
+            </h3>
+            <h2 class="font-extrabold">&#36; {{ product.price }}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="w-full">
+        <div class="flex justify-end py-2">
+          <button class="p-3 rounded-sm bg-[#fb641b] w-[40%] text-white font-bold uppercase" (click)="placeOrder()">Place Order</button>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col flex-1 gap-3 p-4 bg-white rounded-sm border-slate-300 h-fit">
+      <div class="flex flex-row justify-between py-4 border-b-2 border-slate-100">
+        <div>Price Details</div>
+      </div>
+      <div class="flex flex-row justify-between">
+        <div>Price</div>
+        <div>&#36; 999</div>
+      </div>
+
+      <div class="flex flex-row justify-between">
+        <div>Discount</div>
+        <div>- &#36; 700</div>
+      </div>
+
+      <div class="flex flex-row justify-between">
+        <div>Delivery Charges</div>
+        <div>FREE</div>
+      </div>
+
+      <div class="flex flex-row justify-between py-4 font-bold border-y-2 border-slate-100">
+        <div>Total Amount</div>
+        <div>&#36; 299</div>
+      </div>
+    </div>
+  </div>
+</div>

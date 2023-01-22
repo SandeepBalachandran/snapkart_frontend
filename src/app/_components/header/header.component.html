@@ -1,0 +1,44 @@
+<div class="w-full h-15 shadow-xl z-[100] p-4 bg-[#2874f0] fixed">
+  <div class="flex flex-row justify-between content-center max-w-[1240px] mx-auto px-2 w-full">
+    <div class="flex content-center">
+      <h1 class="text-white font-bold text-lg">SnapKart</h1>
+    </div>
+    <div class="flex w-2/4">
+      <input #searchBox type="search" class="shadow-xl rounded-sm p-2 px-3 mx-20 w-full search-box" (input)="onSearch(searchBox.value)" />
+    </div>
+    <div class="">
+      <ng-container *ngIf="isUserLoggedIn; else loggedOutContent">
+        <app-dropdown
+          [dropdowndata]="dropdownData"
+          [dropdownTriggerTemplate]="dropdownTriggerTemplate"
+          [dropdownTemplate]="dropdownTemplate"
+          [notDataTemplate]="notDataTemplate"
+        ></app-dropdown>
+      </ng-container>
+      <ng-template #loggedOutContent>
+        <div class="relative w-28 rounded py-2 bg-white text-center font-bold hover:cursor-pointer text-black login-btn" (click)="login()">Login</div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<ng-template #dropdownTriggerTemplate>
+  <div class="rounded-full bg-white px-3 py-1 cursor-pointer font-bold">S</div>
+</ng-template>
+
+<ng-template #dropdownTemplate>
+  <div
+    class="relative w-28 rounded py-2 bg-white text-center font-bold hover:cursor-pointer text-black p-2 border-b-2 hover:bg-slate-50 menu-item"
+    (click)="gotoProfile()"
+  >
+    Profile
+  </div>
+  <div
+    class="relative w-28 rounded py-2 bg-white text-center font-bold hover:cursor-pointer text-black p-2 border-b-2 hover:bg-slate-50 menu-item logout-btn"
+    (click)="logout()"
+  >
+    Logout
+  </div>
+</ng-template>
+
+<ng-template #notDataTemplate> </ng-template>

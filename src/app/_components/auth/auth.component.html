@@ -1,0 +1,129 @@
+<!-- <nz-switch [(ngModel)]="loading" name="loading"></nz-switch> -->
+
+<div class="flex content-center justify-center w-full m-auto h-auto">
+  <div class="flex flex-row border border-slate-200 rounded-xl shadow-sm bg-white">
+    <div class="flex flex-col gap-2 bg-[#2874f0] p-10 py-10 text-white">
+      <h1 class="font-bold text-white text-2xl">
+        {{ registerEnabled ? "Looks like you're new here!" : 'Login' }}
+      </h1>
+      <p>
+        {{ registerEnabled ? 'Sign up with your email to get started' : 'Get access to your Orders, Wishlist and Recommendations' }}
+      </p>
+    </div>
+    <div class="w-full flex justify-center p-10 py-10">
+      <ng-container *ngIf="!registerEnabled">
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="w-full" id="loginform">
+          <div class="flex flex-col gap-5">
+            <div class="flex gap-2 justify-start flex-col">
+              <label for="user-name">Email: </label>
+              <input
+                type="text"
+                formControlName="email"
+                placeholder="Email"
+                auto-focus
+                autofocus
+                [ngClass]="
+                  submitted && loginFormControls['email'].errors
+                    ? 'w-full p-2 border border-red-700 shadow-sm rounded-sm'
+                    : 'w-full p-2 border border-slate-200 shadow-sm rounded-sm'
+                "
+              />
+              <div *ngIf="submitted && loginFormControls['email'].errors" class="invalid-feedback">
+                <div class="text-red-700" *ngIf="loginFormControls['email'].errors['required']">Email is required</div>
+                <div class="text-red-700" *ngIf="loginFormControls['email'].errors['email']">Email is format is wrong</div>
+              </div>
+            </div>
+            <div class="flex gap-2 justify-start flex-col">
+              <label for="last-name">Password: </label>
+              <input
+                type="password"
+                formControlName="password"
+                placeholder="Password"
+                [ngClass]="
+                  submitted && loginFormControls['password'].errors
+                    ? 'w-full p-2 border border-red-700 shadow-sm rounded-sm'
+                    : 'w-full p-2 border border-slate-200 shadow-sm rounded-sm'
+                "
+              />
+              <div *ngIf="submitted && loginFormControls['password'].errors" class="invalid-feedback">
+                <div class="text-red-700" *ngIf="loginFormControls['password'].errors['required']">Password is required</div>
+              </div>
+            </div>
+
+            <button class="bg-[#2874f0] w-full p-2 text-white shadow-sm rounded-sm">Log in</button>
+            <div class="flex gap-2 text-center flex-col">
+              Or
+              <a (click)="toggleLogin()" class="cursor-pointer">Register Now !</a>
+            </div>
+          </div>
+        </form>
+      </ng-container>
+
+      <ng-container *ngIf="registerEnabled">
+        <form [formGroup]="registerForm" class="w-full" (ngSubmit)="onRegister()">
+          <div class="flex flex-col gap-5">
+            <div class="flex gap-2 justify-start flex-col">
+              <label for="first-name">First Name: </label>
+              <input
+                type="text"
+                nz-input
+                formControlName="firstname"
+                placeholder="First Name"
+                autofocus
+                [ngClass]="
+                  submitted && registerFormControls['firstname'].errors
+                    ? 'w-full p-2 border border-red-700 shadow-sm rounded-sm'
+                    : 'w-full p-2 border border-slate-200 shadow-sm rounded-sm'
+                "
+              />
+              <div *ngIf="submitted && registerFormControls['firstname'].errors" class="invalid-feedback">
+                <div class="text-red-700" *ngIf="registerFormControls['firstname'].errors['required']">First Name is required</div>
+              </div>
+            </div>
+            <div class="flex gap-2 justify-start flex-col">
+              <label for="user-name">Email: </label>
+              <input
+                type="text"
+                nz-input
+                formControlName="email"
+                placeholder="email"
+                [ngClass]="
+                  submitted && registerFormControls['email'].errors
+                    ? 'w-full p-2 border border-red-700 shadow-sm rounded-sm'
+                    : 'w-full p-2 border border-slate-200 shadow-sm rounded-sm'
+                "
+              />
+              <div *ngIf="submitted && registerFormControls['email'].errors" class="invalid-feedback">
+                <div class="text-red-700" *ngIf="registerFormControls['email'].errors['required']">Email is required</div>
+                <div class="text-red-700" *ngIf="registerFormControls['email'].errors['email']">Email format is wrong</div>
+              </div>
+            </div>
+            <div class="flex gap-2 justify-start flex-col">
+              <label for="password">Password: </label>
+              <input
+                type="password"
+                nz-input
+                formControlName="password"
+                placeholder="Password"
+                [ngClass]="
+                  submitted && registerFormControls['password'].errors
+                    ? 'w-full p-2 border border-red-700 shadow-sm rounded-sm'
+                    : 'w-full p-2 border border-slate-200 shadow-sm rounded-sm'
+                "
+              />
+              <div *ngIf="submitted && registerFormControls['password'].errors" class="invalid-feedback">
+                <div class="text-red-700" *ngIf="registerFormControls['password'].errors['required']">Password is required</div>
+              </div>
+            </div>
+
+            <button class="bg-[#2874f0] w-full p-2 text-white shadow-sm rounded-sm">Register</button>
+            <div class="flex gap-2 text-center flex-col">
+              Or
+              <a (click)="toggleLogin()" class="cursor-pointer">Login Now !</a>
+            </div>
+          </div>
+        </form>
+      </ng-container>
+    </div>
+  </div>
+</div>

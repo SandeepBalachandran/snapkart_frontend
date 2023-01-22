@@ -1,0 +1,38 @@
+<!-- Multiple slot project - Not using for now -->
+<!-- <div class="w-full flex">
+  <div class="w-full relative">
+    <ng-content select="[trigger]"></ng-content>
+    <div *ngIf="isOpen" (click)="$event.stopPropagation()">
+        <ng-content select="[dropdowncontent]"></ng-content>
+    </div> 
+  </div>
+</div> -->
+
+<!-- Bringing templateoutlet project -->
+
+<div class="w-full flex">
+  <div class="w-full relative">
+    <div class="w-full" (click)="toggleDropdown()" (click)="$event.stopPropagation()">
+      <ng-container *ngTemplateOutlet="dropdownTriggerTemplate || defaultTriggerTemplate; context: { $implicit: triggerText }"> </ng-container>
+    </div>
+    <div *ngIf="isOpen" class="bg-white shadow-xl border-1 border-slate-200 absolute left-0 top-10 rounded-lg" [@dropDownMenu]>
+      <ng-container *ngTemplateOutlet="dropdownTemplate || defaultDropdownTemplate"> </ng-container>
+    </div>
+
+    <div class="not-found">
+      <ng-container *ngTemplateOutlet="notDataTemplate || defaultNoDataTemplate; context: { $implicit: noDataText }"> </ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #defaultTriggerTemplate let-content>
+  <div class="w-full">{{ content }}</div>
+</ng-template>
+
+<ng-template #defaultDropdownTemplate let-item let-position="index">
+  {{ item }}
+</ng-template>
+
+<ng-template #defaultNoDataTemplate let-noDataText>
+  {{ noDataText }}
+</ng-template>
